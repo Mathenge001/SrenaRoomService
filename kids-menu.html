@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids' Menu</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin: 20px;
+
+        }
+
+        #video-background {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1; /* Place the video behind other content */
+}
+
+#content {
+  position: relative;
+  z-index: 1; /* Place content above the video */
+  color: #2c3e50;
+}
+
+        h1 {
+            color: #e74c3c;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: left;
+
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer; /* Enable cursor pointer for touch interaction */
+          width: 300px;
+          height: 500px;
+        }
+
+        .image-section {
+            position: relative;
+
+            border-radius: 20px 20px 0 0;
+
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .text-section {
+           background-color: rgba(236, 240, 241, 0.8); /* Adjust the alpha value as needed for transparency */
+    padding: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 200px;
+          width: 100%;
+          height: 200px;
+           margin-top: -1px; /* Adjust the margin-top value as needed */
+}
+
+
+        button {
+             background-color: rgba(231, 76, 60, 0.8); /* Adjust the alpha value as needed for transparency */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #c0392b;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+        .complete-order-button,
+        .menu-dropdown,
+        .call-waiter-button {
+            position: fixed;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .complete-order-button {
+            background-color: #27ae60;
+            color: white;
+            padding: 15px 30px;
+            border: 2px solid #219653;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .menu-dropdown {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border: 2px solid #2980b9;
+            top: 20px;
+            right: 20px;
+        }
+
+        .call-waiter-button {
+            background-color: #f39c12;
+            color: white;
+            padding: 15px 30px;
+            border: 2px solid #d4ac0d;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+
+        .dropdown-arrow {
+            font-size: 24px;
+            margin-left: 5px;
+        }
+
+ /* Your existing styles */
+
+/* Your existing styles */
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 80px; /* Add space at the bottom to accommodate fixed buttons */
+        padding-top: 40px; /* Add space at the top to avoid title being covered */
+    }
+
+    h1 {
+        margin-top: 20px; /* Adjust the margin to create space between the title and the content */
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        padding: 10px;
+        background-color: #ffffff; /* Explicitly set the background color for the button container */
+        z-index: 2;
+    }
+
+    .complete-order-button,
+    .call-waiter-button,
+    .back-button {
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 18px; /* Adjusted font size for skinnier buttons */
+    }
+
+    .complete-order-button {
+        background-color: #27ae60;
+        color: white;
+        padding: 12px 20px; /* Adjusted padding for skinnier button */
+        border: 2px solid #219653;
+        margin-right: 15px; /* Adjust margin to create space between buttons */
+    }
+
+    #call-waiter-button {
+        background-color: #f39c12;
+        color: white;
+        padding: 12px 20px; /* Adjusted padding for skinnier button */
+        border: 2px solid #d4ac0d;
+    }
+
+      #callWaiterButton:hover {
+            background-color: #866c09;
+        }
+
+        #flexContainer {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: rgba(65, 61, 61, 0.91); /* Adjust the alpha value (last parameter) as needed */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            position: absolute;
+            z-index: 1000;
+        }
+
+        #flexContainer button {
+            background-color: rgba(255, 215, 0, 0.5); /* Adjust the alpha value (last parameter) as needed */
+            color: rgb(238, 238, 238);
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #flexContainer button:hover {
+            background-color: #edde1b;
+        }
+
+        #textBoxContainer {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 10px;
+        }
+
+        #textBoxContainer textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        #textBoxContainer button {
+            background-color: rgba(21, 21, 21, 0.7);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #textBoxContainer button:hover {
+            background-color: rgb(239, 0, 0);
+        }
+
+        .closeButton {
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 20px;
+            color: rgb(255, 203, 0);
+        }
+
+        .closeButton:hover {
+            color: #ffcb03;
+        }
+
+
+
+
+
+
+
+
+
+      .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ccc;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+
+
+
+
+    .menu-dropdown {
+        position: fixed;
+        width: 150px; /* Adjust the width as needed */
+        top: 20px;
+        right: 20px;
+        z-index: 1;
+        background-color: #3498db;
+        color: white;
+        padding: 15px 20px; /* Adjust padding as needed */
+        border: 2px solid #2980b9;
+    }
+}
+
+
+    </style>
+</head>
+
+<button class="back-button" onclick="window.location.href = 'restaurant-menus.html'">Back</button>
+
+
+
+    <h1>Kids' Menu</h1>
+<body>
+  <video id="video-background" autoplay muted loop>
+    <source src="children.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div id="content">
+    <!-- Your existing menu items -->
+
+<div class="menu-item">
+    <div class="image-section">
+        <img src="silly sandy.jpg" alt="Cheesy Grin Grilled Cheese">
+    </div>
+    <div class="text-section">
+        <p><strong>1. Silly Sandwiches:</strong> Cheesy Grin Grilled Cheese</p>
+        <p>🕒 10 mins prep time</p>
+       <p>Price: Ksh 1020</p>
+         <button class="order-button" onclick="orderItem('Silly Sandwiches', 1020)">YUM!</button>
+    </div>
+</div>
+
+<!-- Menu Item 2 -->
+<div class="menu-item">
+    <div class="image-section">
+        <img src="playfull pasta.jpg" alt="Funny Faces Spaghetti">
+    </div>
+    <div class="text-section">
+        <p><strong>2. Playful Pasta:</strong></p>
+        <p>Funny Faces Spaghetti</p>
+        <p>🕒 Prep Time: 20 mins</p>
+       <p>Price: Ksh 1420</p>
+        <button class="order-button" onclick="orderItem('Playful Pasta', 1420)">Yum!</button>
+    </div>
+</div>
+
+<!-- Menu Item 3 -->
+<div class="menu-item">
+    <div class="image-section">
+        <img src="dino bites.jpg" alt="Dino Bites">
+    </div>
+    <div class="text-section">
+        <p><strong>3. Dino Nuggets Adventure:</strong></p>
+        <p>Dino Bites</p>
+        <p>🕒 Prep Time: 25 mins</p>
+       <p>Price: Ksh 1100</p>
+        <button class="order-button" onclick="orderItem('Dino Nuggets Adventure', 1100)">Yum!</button>
+    </div>
+</div>
+
+<!-- Menu Item 4 -->
+<div class="menu-item">
+    <div class="image-section">
+        <img src="pizza bites.jpg" alt="Mini Pizza Pals">
+    </div>
+    <div class="text-section">
+        <p><strong>4. Pizza Party:</strong></p>
+        <p>Mini Pizza Pals</p>
+        <p>🕒 Prep Time: 15 mins</p>
+         <p>Price: Ksh 1250</p>
+        <button class="order-button" onclick="orderItem('Pizza Party', 1250)">Yum!</button>
+    </div>
+</div>
+
+<!-- Menu Item 5 -->
+<div class="menu-item">
+    <div class="image-section">
+        <img src="happy fish and chips.jpg" alt="Smiley Fish Sticks">
+    </div>
+    <div class="text-section">
+        <p><strong>5. Happy Fish & Chips:</strong></p>
+        <p>Smiley Fish Sticks</p>
+        <p>🕒 Prep Time: 30 mins</p>
+       <p>Price: Ksh 2465</p>
+        <button class="order-button" onclick="orderItem('Happy Fish & Chips', 2465)">Yum!</button>
+    </div>
+</div>
+
+<!-- Menu Item 6 -->
+<div class="menu-item">
+    <div class="image-section">
+        <img src="veggie delights.jpg" alt="Rainbow Garden Wrap">
+    </div>
+    <div class="text-section">
+        <p><strong>6. Veggie Delight:</strong></p>
+        <p>Rainbow Garden Wrap</p>
+        <p>🕒 Prep Time: 15 mins</p>
+       <p>Price: Ksh 1780</p>
+        <button class="order-button" onclick="orderItem('Veggie Delight', 1780)">Yum!</button>
+    </div>
+</div>
+
+<!-- Menu Item 7 -->
+<div class="menu-item">
+    <div class="image-section">
+        <img src="fruit fun.jpg" alt="Fruit Kabobs">
+    </div>
+    <div class="text-section">
+        <p><strong>7. Fruit Fun:</strong></p>
+        <p>Fruit Kabobs</p>
+        <p>🕒 Prep Time: 10 mins</p>
+       <p>Price: Ksh 163</p>
+        <button class="order-button" onclick="orderItem('Fruit Fun', 163)">Yum!</button>
+    </div>
+</div>
+
+<!-- Menu Item 8 -->
+<div class="menu-item">
+    <div class="image-section">
+        <img src="sweat treats.jpg" alt="Dessert Dippers">
+    </div>
+    <div class="text-section">
+        <p><strong>8. Sweet Treats:</strong></p>
+        <p>Dessert Dippers</p>
+        <p>🕒 Prep Time: 20 mins</p>
+       <p>Price: Ksh 1300</p>
+        <button class="order-button" onclick="orderItem('Sweet Treats', 1300)">Yum!</button>
+    </div>
+</div>
+
+<!-- Menu Item 9 -->
+<div class="menu-item">
+    <div class="image-section">
+        <img src="berrie blast smoothies.jpg" alt="Berry Blast Smoothie">
+    </div>
+    <div class="text-section">
+        <p><strong>9. Happy Drink:</strong></p>
+        <p>Berry Blast Smoothie</p>
+        <p>🕒 Prep Time: 5 mins</p>
+       <p>Price: Ksh 920</p>
+        <button class="order-button" onclick="orderItem('Happy Drink', 920)">Yum!</button>
+    </div>
+</div>
+
+ <button class="complete-order-button" onclick="completeOrder()">View my Order</button>
+    <select class="menu-dropdown" onchange="navigateToMenu(this)">
+        <option value="" disabled selected>&#9660; Menu</option>
+        <option value="kids-menu.html">Kids' Menu</option>
+        <option value="adult-menu.html">Adult Menu</option>
+        <option value="special-dietary-menu.html">Special Dietary Menu</option>
+        <option value="seasonal-menu.html">Seasonal Menu</option>
+        <!-- Add more menu options as needed -->
+    </select>
+
+
+
+
+
+
+    <button class="call-waiter-button" onclick="toggleFlexbox()">Call Waiter</button>
+  </div>
+    <div id="flexContainer">
+        <span class="closeButton" onclick="toggleFlexbox()">×</span>
+        <!-- Options -->
+        <button onclick="askForAssistance()">Ask for Assistance</button>
+        <button onclick="clearTable()">Clear Table</button>
+        <button onclick="billMe()">Bill Me</button>
+
+    </div>
+
+  <script>
+    function orderItem(name, price) {
+        // Create an object representing the ordered item
+        const orderedItem = {
+            name: name,
+            price: price,
+        };
+
+        // Add the ordered item to the local storage
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push(orderedItem);
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+        // Show a pop-up notification
+        alert(`${name} has been added to the tray!`);
+    }
+
+    function completeOrder() {
+        // Redirect to the "View My Orders" page
+        window.location.href = 'view-my-orders.html';
+    }
+
+    window.addEventListener('load', displayOrders);
+
+    function navigateToMenu(menu) {
+        if (menu.value) {
+            window.location.href = menu.value;
+        }
+    }
+
+      function toggleFlexbox() {
+            var flexContainer = document.getElementById("flexContainer");
+            flexContainer.style.display = (flexContainer.style.display === "flex") ? "none" : "flex";
+        }
+
+        function hideTextBox() {
+            var textBoxContainer = document.getElementById("textBoxContainer");
+            textBoxContainer.style.display = "none";
+        }
+
+        function askForAssistance() {
+            alert("Asking for assistance. Please wait.");
+        }
+
+        function clearTable() {
+            alert("Request to clear the table submitted.");
+        }
+
+        function billMe() {
+            alert("Requesting the bill. Thank you for dining with us!");
+        }
+
+        function showTextBox(feedbackType) {
+            var textBoxContainer = document.getElementById("textBoxContainer");
+            textBoxContainer.style.display = "flex";
+            document.getElementById("textBox").focus();
+            document.getElementById("textBox").setAttribute("data-feedback-type", feedbackType);
+        }
+
+        function submitFeedback() {
+            var textBoxContainer = document.getElementById("textBoxContainer");
+            textBoxContainer.style.display = "none";
+            var feedbackType = document.getElementById("textBox").getAttribute("data-feedback-type");
+            var feedbackText = document.getElementById("textBox").value;
+
+            // Send feedback to email
+            var emailSubject = "Feedback - " + feedbackType;
+            var emailBody = "Feedback Type: " + feedbackType + "\n\n" + "Feedback Text: " + feedbackText;
+            window.location.href = "mailto:karemathenge8@gmail.com?subject=" + encodeURIComponent(emailSubject) + "&body=" + encodeURIComponent(emailBody);
+
+            // Reflect on admin panel (You may need a server-side implementation for this)
+            saveToAdminPanel(feedbackType, feedbackText);
+        }
+
+        function saveToAdminPanel(feedbackType, feedbackText) {
+            // Simulate server-side logic by showing an alert
+            alert("Feedback Type: " + feedbackType + "\n\n" + "Feedback Text: " + feedbackText + "\n\nSaved to admin panel.");
+        }
+
+    function toggleDropdown() {
+        const dropdownMenu = document.getElementById('myDropdown');
+        dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropdown-toggle')) {
+            const dropdowns = document.getElementsByClassName('dropdown-menu');
+            for (let i = 0; i < dropdowns.length; i++) {
+                const openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
+                }
+            }
+        }
+    };
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var backButton = document.querySelector(".back-button");
+
+        // Add click event listener to the back button
+        backButton.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default behavior of anchor tag
+            window.location.href = "menus.html"; // Navigate to menus.html
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

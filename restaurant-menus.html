@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+          background-image: url('https://i.pinimg.com/564x/b6/aa/91/b6aa915a8af1139561f0b9ec24a2e5af.jpg');
+             background-size: cover;
+            background-position: center;
+        }
+
+        #menu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+           margin-bottom: -20px; /* Adjust the margin-bottom value as needed */
+
+        }
+
+        .menu-button {
+            background-color: #493220; /* Brown button color */
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .menu-button:hover {
+            background-color: #915a2f; /* Lighter brown for hover effect */
+        }
+
+        #back-button {
+            background-color: #915a2f; /* Darker brown for back button */
+            align-self: flex-start;
+        }
+
+        #call-button {
+            background-color: #4b300d; /* Dark brown for call button */
+            align-self: flex-end;
+           margin-bottom: 100px; /* Adjust the margin-bottom value as needed */
+}
+
+         .callWaiterButton {
+            background-color: #915a2f;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .callWaiterButton:hover {
+            background-color: #493220;
+        }
+
+        #flexContainer {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            position: absolute;
+            z-index: 1000;
+        }
+
+        #flexContainer button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #flexContainer button:hover {
+            background-color: #2980b9;
+        }
+
+        #textBoxContainer {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 10px;
+        }
+
+        #textBoxContainer textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        #textBoxContainer button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #textBoxContainer button:hover {
+            background-color: #2980b9;
+        }
+
+        .closeButton {
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 20px;
+            color: #aaa;
+        }
+
+        .closeButton:hover {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="menu-container">
+ <button id="back-button" class="menu-button" onclick="window.location.href='pick-a-menu.html'">Back</button>
+
+        <div>
+            <div class="menu-button" onclick="window.location.href='kids-menu.html'">Kids Menu</div>
+            <div class="menu-button" onclick="window.location.href='adult-menu.html'"> Menu</div>
+            <div class="menu-button" onclick="window.location.href='special-dietary.html'">Special Dietary Menu</div>
+            <div class="menu-button" onclick="window.location.href='seasonal-menu.html'">Seasonal Menu</div>
+            <div class="menu-button" onclick="window.location.href='bar-menu.html'">Bar</div>
+        </div>
+
+       <!-- Call Waiter Button -->
+    <button id="callWaiterButton" class="callWaiterButton" onclick="toggleFlexbox()">
+        <i class="fas fa-phone icon icon-ring"></i>
+        Call Waiter
+    </button>
+
+    <!-- Flexbox container for options -->
+    <div id="flexContainer">
+        <span class="closeButton" onclick="toggleFlexbox()">×</span>
+        <!-- Options -->
+        <button onclick="askForAssistance()">Ask for Assistance</button>
+        <button onclick="clearTable()">Clear Table</button>
+        <button onclick="billMe()">Bill Me</button>
+
+    </div>
+       </div>
+</div>
+    <script>
+         function toggleFlexbox() {
+            var flexContainer = document.getElementById("flexContainer");
+            flexContainer.style.display = (flexContainer.style.display === "flex") ? "none" : "flex";
+        }
+
+        function hideTextBox() {
+            var textBoxContainer = document.getElementById("textBoxContainer");
+            textBoxContainer.style.display = "none";
+        }
+
+        function askForAssistance() {
+            alert("Asking for assistance. Please wait.");
+        }
+
+        function clearTable() {
+            alert("Request to clear the table submitted.");
+        }
+
+        function billMe() {
+            alert("Requesting the bill. Thank you for dining with us!");
+        }
+
+        function showTextBox(feedbackType) {
+            var textBoxContainer = document.getElementById("textBoxContainer");
+            textBoxContainer.style.display = "flex";
+            document.getElementById("textBox").focus();
+            document.getElementById("textBox").setAttribute("data-feedback-type", feedbackType);
+        }
+
+        function submitFeedback() {
+            var textBoxContainer = document.getElementById("textBoxContainer");
+            textBoxContainer.style.display = "none";
+            var feedbackType = document.getElementById("textBox").getAttribute("data-feedback-type");
+            var feedbackText = document.getElementById("textBox").value;
+
+            // Send feedback to email
+            var emailSubject = "Feedback - " + feedbackType;
+            var emailBody = "Feedback Type: " + feedbackType + "\n\n" + "Feedback Text: " + feedbackText;
+            window.location.href = "mailto:karemathenge8@gmail.com?subject=" + encodeURIComponent(emailSubject) + "&body=" + encodeURIComponent(emailBody);
+
+            // Reflect on admin panel (You may need a server-side implementation for this)
+            saveToAdminPanel(feedbackType, feedbackText);
+        }
+
+        function saveToAdminPanel(feedbackType, feedbackText) {
+            // Simulate server-side logic by showing an alert
+            alert("Feedback Type: " + feedbackType + "\n\n" + "Feedback Text: " + feedbackText + "\n\nSaved to admin panel.");
+        }
+
+
+
+         function redirectToBarMenu() {
+    // Get the current date
+    const currentDate = new Date();
+    // Get the user's birth date
+    const birthDate = new Date('1999-01-01'); // Assuming the user was born on January 1, 1999
+
+    // Calculate the age difference
+    const ageDifference = currentDate.getFullYear() - birthDate.getFullYear();
+
+    // Check if the user is 21 or older
+    if (ageDifference >= 21) {
+        // Redirect to the bar menu
+        window.location.href = 'bar-menu.html';
+    } else {
+        // Display the warning message
+        document.getElementById('ageVerification').style.display = 'block';
+    }
+}
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

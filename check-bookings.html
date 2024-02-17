@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check Bookings</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #eee;
+    }
+
+    #logo {
+      width: 50px; /* Adjust the logo width as needed */
+      height: 50px; /* Adjust the logo height as needed */
+      margin-right: 10px;
+    }
+
+    #bookings-container {
+      margin: 20px;
+    }
+
+    .booking-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .booking-controls {
+      display: flex;
+      align-items: center;
+    }
+
+    .delete-button {
+      cursor: pointer;
+    }
+
+    #total-cost {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #action-buttons {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    #back-button,
+    #delete-all-button,
+    #pay-up-button {
+      margin-right: 10px;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    #delete-all-button {
+      background-color: #ff0000;
+      color: #ffffff;
+      margin-bottom: 80px;
+    }
+
+    #pay-up-button {
+      background-color: #008000;
+      color: #ffffff;
+      margin-bottom: 80px;
+    }
+
+     #payment-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  #payment-modal button {
+    margin-right: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+    #payment-modal,
+  #billing-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  #payment-modal button,
+  #billing-modal button {
+    margin-right: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+
+
+  /* Add some styling for the buttons*/
+  .control-button, .delete-button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 5px; /* Add a bit of right margin for spacing */
+  }
+
+  .delete-button {
+    background-color: #FF0000;
+  }
+
+    /* Include the provided styles */
+     /* Include the provided styles and modify for green and white color scheme */
+
+
+
+.custom-modal {
+    font-family: 'Poppins', sans-serif;
+    max-height: 400px;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    transition: all 0.3s ease-in-out;
+    color: #000000; /* Text color */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1051;
+    background: #2a6c2c;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none; /* Set it to none by default */
+}
+
+.custom-modal .close-btn {
+    color: #000000;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    background: none;
+    border: none;
+}
+
+.custom-modal .container {
+    background: linear-gradient(90deg, #308633 60%, #08520a 40.1%); /* Green and white gradient */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.custom-modal form {
+    background-color: #388e3c;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.custom-modal .submit-btn {
+    background-color: #4caf50;
+    color: #eeeeee;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.custom-modal .submit-btn:hover {
+    background: #388e3c;
+}
+
+.custom-modal input:focus {
+    border: 1px solid #4caf50; /* Green focus border */
+    outline: none;
+}
+
+/* Add a media query for smaller screens */
+@media screen and (max-width: 400px) {
+     #bookings-wrapper {
+        max-height: calc(100vh - 180px); /* Adjust the height for smaller screens */
+    }
+
+    #bookings-container {
+        /* Adjust styling for individual bookings on smaller screens */
+    }
+
+    #action-buttons {
+        flex-direction: column;
+    }
+
+    #back-button{
+      width: 40px;
+    }
+
+
+      #delete-all-button,
+    #pay-up-button {
+        width: 48%; /* Adjust the width as needed (less than 50% to account for margin and padding) */
+        margin-top: 5px;
+        margin-right: 2%; /* Add some space between buttons */
+        padding: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        display: inline-block;
+    }
+
+
+
+    #payment-modal {
+        flex-direction: column;
+    }
+}
+  </style>
+</head>
+<body>
+
+<div id="header">
+  <img id="logo" src="logo.png" alt="Logo">
+  <h1>Check Bookings</h1>
+  <button id="back-button" onclick="goBack();">Back</button>
+</div>
+
+<div id="bookings-wrapper">
+<div id="bookings-container"></div>
+</div>
+<div id="total-cost"></div>
+
+<div id="action-buttons">
+  <button id="delete-all-button" onclick="deleteAllBookings();">Delete All Bookings</button>
+  <button id="pay-up-button" onclick="payUp();">Pay Up</button>
+</div>
+
+<div id="payment-modal">
+  <button onclick="showBillingModal()">Card</button>
+ <button onclick="openMpesaModal()">Mpesa</button>
+</div>
+
+
+<!-- Mpesa-friendly modal body with flexbox -->
+<div id="customMpesaModalBody" style="display: none; z-index: 1051;" class="custom-modal">
+    <div class="modal-body d-flex flex-column">
+        <button class="close-btn" onclick="closeMpesaModal()" aria-label="Close">&times;</button>
+        <div id="err"></div>
+
+        <h4 class="mb-4">Mpesa Payment Details</h4>
+
+        <!-- Table for payment details -->
+        <table role="table" class="table flex-grow-1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="cartItems"></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">Total</td>
+                    <td id="cartTotal">Ksh. 0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- Form for Mpesa payment -->
+        <form action="" class="form m-5">
+            <div class="d-flex flex-column flex-sm-row">
+                <!-- Mpesa logo -->
+                <div class="col-sm-5">
+                    <img style="max-width: 80%" src="assets/img/mpesalogo.png" alt="mpesa logo">
+                </div>
+
+                <!-- Mpesa phone number input -->
+                <div class="form-group col-sm-7 mb-4">
+                    <label for="phone">Enter Mpesa Phone Number</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="07XXXXXXXX">
+                    <div id="phoneErr"></div>
+                </div>
+            </div>
+
+            <!-- Pay with Mpesa button -->
+            <button id="paynow" onclick="payWithMpesa()" type="button" class="btn btn-lg btn-success mt-3 mt-sm-0">Pay with Mpesa</button>
+        </form>
+    </div>
+</div>
+
+<div id="billing-modal">
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+    <form action="">
+
+        <button class="close-btn" onclick="closeCard()">X</button>
+
+        <div class="row">
+
+            <div class="col">
+
+                <h3 class="title">billing address</h3>
+
+                <div class="inputBox">
+                    <span>full name :</span>
+                    <input type="text" placeholder="john deo">
+                </div>
+                <div class="inputBox">
+                    <span>email :</span>
+                    <input type="email" placeholder="example@example.com">
+                </div>
+                <div class="inputBox">
+                    <span>address :</span>
+                    <input type="text" placeholder="room - street - locality">
+                </div>
+                <div class="inputBox">
+                    <span>city :</span>
+                    <input type="text" placeholder="mumbai">
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>state :</span>
+                        <input type="text" placeholder="india">
+                    </div>
+                    <div class="inputBox">
+                        <span>zip code :</span>
+                        <input type="text" placeholder="123 456">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <h3 class="title">payment</h3>
+
+                <div class="inputBox">
+                    <span>cards accepted :</span>
+                    <img src="card_img.png" alt="">
+                </div>
+                <div class="inputBox">
+                    <span>name on card :</span>
+                    <input type="text" placeholder="mr. john deo">
+                </div>
+                <div class="inputBox">
+                    <span>credit card number :</span>
+                    <input type="number" placeholder="1111-2222-3333-4444">
+                </div>
+                <div class="inputBox">
+                    <span>exp month :</span>
+                    <input type="text" placeholder="january">
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>exp year :</span>
+                        <input type="number" placeholder="2022">
+                    </div>
+                    <div class="inputBox">
+                        <span>CVV :</span>
+                        <input type="text" placeholder="1234">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <input type="submit" value="proceed to checkout" class="submit-btn">
+
+    </form>
+
+</div>
+
+</body>
+</html>
+</div>
+
+
+
+<script>
+  let totalCost = 0; // Declare totalCost as a global variable
+
+
+  function goBack() {
+    window.location.href = 'offers.html';
+  }
+
+  function getBookedEvents() {
+    const storedBookedEvents = localStorage.getItem('bookedEvents');
+    return storedBookedEvents ? JSON.parse(storedBookedEvents) : [];
+  }
+
+  function updateBookedEvents(bookedEvents) {
+    localStorage.setItem('bookedEvents', JSON.stringify(bookedEvents));
+  }
+
+  function displayBookedEvents() {
+    const bookingsContainer = document.getElementById('bookings-container');
+    const totalCostContainer = document.getElementById('total-cost');
+    const bookedEvents = getBookedEvents();
+
+    if (bookedEvents.length === 0) {
+      bookingsContainer.innerHTML = '<p>No bookings available.</p>';
+    } else {
+      bookingsContainer.innerHTML = ''; // Clear previous bookings
+      let totalCost = 0;
+
+      bookedEvents.forEach((event, index) => {
+        const bookingItem = document.createElement('div');
+        bookingItem.className = 'booking-item';
+        bookingItem.innerHTML = `
+                <p><strong>${event.name}</strong></p>
+                <p>Date: ${event.date}</p>
+                <p>Charge: ${event.charge}</p>
+                <div class="booking-controls">
+                    <button class="control-button add-button" onclick="increaseBooking(${index});">+</button>
+                    <span class="booking-count" data-event-index="${index}">${event.count || 1}</span>
+                    <!-- Initialize count to 1 if undefined -->
+                    <button class="control-button reduce-button" onclick="decreaseBooking(${index});">-</button>
+                    <button class="delete-button" onclick="deleteBooking(${index});">🗑</button>
+                </div>
+            `;
+        bookingsContainer.appendChild(bookingItem);
+
+        totalCost += parseFloat(event.charge.replace('$', '')) * (event.count || 1);
+        // Use count 1 if undefined
+      });
+
+      totalCostContainer.textContent = `Total Cost: $${totalCost.toFixed(2)}`;
+    }
+  }
+
+  function increaseBooking(index) {
+    const bookedEvents = getBookedEvents();
+    bookedEvents[index].count++;
+    updateBookedEvents(bookedEvents);
+    displayBookedEvents();
+  }
+
+  function decreaseBooking(index) {
+    const bookedEvents = getBookedEvents();
+    if (bookedEvents[index].count > 0) {
+      bookedEvents[index].count--;
+      updateBookedEvents(bookedEvents);
+      displayBookedEvents();
+    }
+  }
+
+  function deleteBooking(index) {
+    const bookedEvents = getBookedEvents();
+    const event = bookedEvents[index];
+    const eventCost = parseFloat(event.charge.replace('$', '')) * (event.count || 1);
+
+    // Subtract the cost of the deleted event from the total cost
+    totalCost -= eventCost;
+    bookedEvents.splice(index, 1);
+
+    updateBookedEvents(bookedEvents);
+    displayBookedEvents();
+  }
+
+  function deleteAllBookings() {
+    localStorage.removeItem('bookedEvents');
+    displayBookedEvents();
+  }
+
+  function payUp() {
+    // Display the payment modal
+    const paymentModal = document.getElementById('payment-modal');
+    paymentModal.style.display = 'block';
+  }
+
+  function choosePaymentMode(mode) {
+    // Your payment processing logic here
+    alert(`Payment successful! Payment mode: ${mode}`);
+
+    // Close the payment modal
+    const paymentModal = document.getElementById('payment-modal');
+    paymentModal.style.display = 'none';
+  }
+
+  function showBillingModal() {
+    // Display the billing modal
+    const billingModal = document.getElementById('billing-modal');
+    billingModal.style.display = 'block';
+  }
+
+  window.addEventListener('load', displayBookedEvents);
+
+  function closeCard() {
+    // Add logic to hide or remove the card element
+    document.querySelector('.container').style.display = 'none';
+  }
+
+  // JavaScript code
+    function openMpesaModal() {
+        const mpesaModal = document.getElementById('customMpesaModalBody');
+        mpesaModal.style.display = 'block';
+    }
+
+    function closeMpesaModal() {
+        const mpesaModal = document.getElementById('customMpesaModalBody');
+        mpesaModal.style.display = 'none';
+    }
+
+    function payWithMpesa() {
+        // Add your Mpesa payment processing logic here
+        alert('Payment successful!'); // You can replace this with your actual logic
+
+        // Close the Mpesa modal
+        closeMpesaModal();
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special-Dietary-Menu</title>
+
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 95%;
+    height: 10vh;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.back-icon {
+  background-color:  rgba(51, 51, 51, 9%);
+   color: #eeeeee;
+    padding: 3px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    height: 3vh;
+    text-align: center;
+    top: 0;
+  margin-top: -20px;
+}
+
+.menu-dropdown {
+     background-color: #000; /* Black background color */
+    color: #fff;
+    padding: 3px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    width: 20%;
+   margin-top: -20px;
+        margin-right: 40px;
+}
+
+.welcome-container {
+    text-align: center;
+    padding: 50px 20px 20px;
+    background-image: url('https://waylavie.com/cdn/shop/articles/mesa-cafe_700x.jpg?v=1656429603');
+    background-size: 500px auto;
+    background-position: center bottom; /* Set background position to center bottom */
+    width: 100%;
+    height: 6vh; /* Set height to viewport height */
+    position: fixed; /* Set position to relative */
+    z-index: 999; /* Adjusted z-index */
+}
+
+.welcome-container h1 {
+    color: #493220;
+    font-size: 32px;
+    margin-bottom: 5px;
+   margin-top: -50px; /* Adjust the top margin to move the h1 upwards */
+  margin-right: 50px;
+}
+
+.welcome-container p {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+  margin-right: 10px;
+}
+
+#category-buttons {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    background-color: rgba(51, 51, 51, 0.1);
+    height: 7vh;
+    width: 100%; /* Full width */
+}
+
+.categories-container {
+    display: flex;
+}
+
+.categories-container button {
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 9px;
+    margin: 5px 2px;
+    cursor: pointer;
+}
+
+
+
+
+           #callWaiterButton {
+            background-color: #493220;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+             margin-top: 10px;
+        }
+
+        #callWaiterButton:hover {
+            background-color: rgba(120, 77, 44, 0.62);
+        }
+
+         #flexContainer {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: rgba(120, 77, 44, 0.62);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.37);
+            padding: 10px;
+            position: absolute;
+            z-index: 1000;
+        }
+
+        #flexContainer button {
+            background-color: rgba(96, 95, 95, 0.7);
+            color: rgb(238, 238, 238);
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #flexContainer button:hover {
+            background-color: rgba(51, 51, 51, 0.92);
+        }
+
+
+       #textBoxContainer {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 10px;
+        }
+
+        #textBoxContainer textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+          #textBoxContainer button {
+            background-color: rgba(21, 21, 21, 0.7);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #textBoxContainer button:hover {
+            background-color: rgb(239, 0, 0);
+        }
+
+        .closeButton {
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 20px;
+            color: rgb(239, 0, 0);
+        }
+
+
+      .closeButton:hover {
+            color: #f12121;
+        }
+
+
+#view-orders-button {
+    background-color: #493220;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  margin-top: 1px;
+}
+
+#view-orders-button:hover {
+    background-color: rgba(145, 90, 47, 0.38);
+}
+
+
+
+
+#GlutenFreeMenu{
+  background: url('https://i.pinimg.com/564x/db/4c/27/db4c27f6458048bc392bed8d9cc0a819.jpg') center/cover;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    text-align: center;
+   background-size: 99% auto; /* Adjust the width percentage as needed */
+    width: 100%;
+    background-attachment: fixed;
+  background-position: 100%;
+  justify-content: center;
+}
+
+/* Category Title */
+.category-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.gluten-free-item-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the items horizontally */
+    margin-top: 20px;
+}
+
+.gluten-free-item{
+   width: 275px; /* Adjust the width as needed */
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-sizing: border-box; /* Added box-sizing for proper width calculation */
+}
+
+.gluten-free-item img{
+   width: 100%;
+    height: 229px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.gluten-free-item  h3{
+  font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.gluten-free-item p{
+  font-size: 16px;
+    margin: 10px 0;
+}
+
+.order-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.order-button:hover {
+    background-color: #45a049;
+}
+
+
+#VeganMenu{
+   background: url('https://i.pinimg.com/564x/5d/a8/7c/5da87ccb298cde34e02bb2c77b6dfbcf.jpg') center/cover no-repeat;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    text-align: center;
+    background-size: 99% auto; /* Adjust the width percentage as needed */
+    width: 100%;
+    background-attachment: fixed;
+  background-position: 100%;
+}
+
+/* Category Title */
+.category-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.vegan-item-container{
+  display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the items horizontally */
+    margin-top: 20px;
+}
+
+.vegan-item{
+   width: 275px; /* Adjust the width as needed */
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-sizing: border-box; /* Added box-sizing for proper width calculation */
+}
+
+.vegan-item img{
+    width: 100%;
+    height:  229px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.vegan-item h3{
+   font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.vegan-item p{
+   font-size: 16px;
+    margin: 10px 0;
+}
+
+.order-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.order-button:hover {
+    background-color: #45a049;
+}
+
+
+#LowCarbKetoMenu{
+   background: url('https://i.pinimg.com/564x/61/d2/86/61d28621669387d9b7e7a8ba9d428b4e.jpg') center/cover no-repeat;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  text-align: center;
+  background-size: 99% auto; /* Adjust the width percentage as needed */
+  width: 100%;
+  background-attachment: fixed;
+}
+
+/* Category Title */
+.category-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.low-carb-keto-item-container{
+  display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the items horizontally */
+    margin-top: 20px;
+}
+
+.low-carb-keto-item{
+   width: 275px; /* Adjust the width as needed */
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-sizing: border-box; /* Added box-sizing for proper width calculation */
+}
+
+.low-carb-keto-item img{
+   width: 100%;
+    height: 229px; /* Adjusted to maintain aspect ratio */
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.low-carb-keto-item h3{
+   font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.low-carb-keto-item p{
+   font-size: 16px;
+    margin: 10px 0;
+}
+
+.order-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.order-button:hover {
+    background-color: #45a049;
+}
+
+
+
+    </style>
+</head>
+<body>
+ <div class="header">
+        <!-- Back icon to go back to the previous page -->
+        <a href="restaurant-menus.html" class="back-icon">&#8592; Back</a>
+
+        <!-- Dropdown menu to navigate to other menus -->
+       <select id="menuDropdown" class="menu-dropdown" onchange="navigateToMenu()">
+    <option value="" disabled selected>Select Menu</option>
+    <option value="kids-menu.html">Kids' Menu</option>
+    <option value="adult-menu.html">Adult Menu</option>
+    <option value="special-dietary-menu.html">Special Dietary Menu</option>
+</select>
+    </div>
+
+    <div class="welcome-container">
+        <h1>Welcome</h1>
+        <p>What are you looking for?</p>
+
+        <!-- Special Dietary Menu Buttons -->
+
+<div id="category-buttons">
+    <div class="categories-container">
+        <button class="tablink" onclick="openTab('GlutenFree')">Gluten-Free</button>
+        <button class="tablink" onclick="openTab('Vegan')">Vegan</button>
+        <button class="tablink" onclick="openTab('LowCarbKeto')">Low-Carb/Keto</button>
+    </div>
+</div>
+
+
+
+    <!-- Call Waiter Button -->
+    <button id="callWaiterButton" onclick="toggleFlexbox()">
+        Call Waiter
+    </button>
+
+    <!-- Flexbox container for options -->
+    <div id="flexContainer">
+        <span class="closeButton" onclick="toggleFlexbox()">×</span>
+        <!-- Options -->
+        <button onclick="askForAssistance()">Ask for Assistance</button>
+        <button onclick="clearTable()">Clear Table</button>
+        <button onclick="billMe()">Bill Me</button>
+
+    </div>
+
+        <button id="view-orders-button" class="menu-button" onclick="viewMyOrders()">View My Orders</button>
+    </div>
+    </div>
+
+
+
+
+
+    <!-- Placeholder content to simulate scrolling -->
+    <div style="height: 200px; background-color: #000000;"></div>
+
+ <!-- Glutten-Free Menu -->
+<div id="GlutenFreeMenu" class="special-dietary-menu-container">
+    <h2>Gluten-Free Menu</h2>
+<!-- Starters -->
+<div class="category-title" style="margin-top: 20px;">Starters</div>
+<div class="gluten-free-item-container starters-container">
+
+    <!-- Gluten-Free Starter 1: Grilled Shrimp Skewers -->
+<!-- starter item 1 -->
+<div class="gluten-free-item">
+    <img src="grilled_shrimp_skewers.jpg" alt="Grilled Shrimp">
+    <h3>Grilled Shrimp Skewers</h3>
+    <p>Seasoned and grilled to perfection.</p>
+    <p>🕒 20 mins prep time</p>
+    <p>Price: Ksh 2403</p>
+    <button class="order-button" onclick="orderItem('Grilled Shrimp Skewers', 2403)">Order</button>
+</div>
+
+<!-- Gluten-Free Starter 2: Caprese Salad -->
+<div class="gluten-free-item">
+    <img src="caprese_salad.jpg" alt="Caprese Salad">
+    <h3>Caprese Salad</h3>
+    <p>Served with balsamic glaze.</p>
+    <p>🕒 20 mins prep time</p>
+    <p>Price: Ksh 2403</p>
+    <button class="order-button" onclick="orderItem('Caprese Salad', 2403)">Order</button>
+</div>
+</div>
+
+
+<!-- Main Courses -->
+<div class="category-title" style="margin-top: 20px;">Main Courses</div>
+<div class="gluten-free-item-container main-course-container">
+
+    <!-- Main Course 1: Herb-Crusted Salmon -->
+    <div class="gluten-free-item">
+        <img src="herb_crusted_salmon.png" alt="Herb Crusted Salmon">
+        <h3>Herb-Crusted Salmon</h3>
+        <p>Salmon fillet with a gluten-free herb crust.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2403</p>
+        <button class="order-button" onclick="orderItem('Herb Crusted Salmon', 2403)">Order</button>
+    </div>
+
+    <!-- Main Course 2: Quinoa & Vegetable Stir-Fry -->
+    <div class="gluten-free-item">
+        <img src="quinoa_and_vegetable_stirfry.jpg" alt="Quinoa & Vegetable">
+        <h3>Vegetable Stir-Fry</h3>
+        <p>With a medley of fresh vegetables & quinoa.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2403</p>
+        <button class="order-button" onclick="orderItem('Quinoa & Vegetable Stir-Fry', 2403)">Order</button>
+    </div>
+
+    <!-- Main Course 3: Grilled Chicken with Lemon-Dill Sauce -->
+    <div class="gluten-free-item">
+        <img src="grilled_chicken_with_lemon_dill_sauce.jpg" alt="Grilled Chicken">
+        <h3>Grilled Chicken </h3>
+        <p>Grilled chicken breast topped with a gluten-free lemon-dill sauce.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2403</p>
+        <button class="order-button" onclick="orderItem('Grilled Chicken', 2403)">Order</button>
+    </div>
+
+</div>
+
+<!-- Sides -->
+<div class="category-title" style="margin-top: 20px;">Sides</div>
+<div class="gluten-free-item-container sides-container">
+
+    <!-- Side 1: Roasted Brussel Sprouts -->
+    <div class="gluten-free-item">
+        <img src="roasted_brussel_sprouts.jpg" alt="Roasted Brussel Sprouts">
+        <h3>Roasted Brussel Sprouts</h3>
+        <p>Roasted with olive oil and garlic.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2403</p>
+        <button class="order-button" onclick="orderItem('Roasted Brussel Sprouts', 2403)">Order</button>
+    </div>
+
+    <!-- Side 2: Garlic Mashed Potatoes -->
+    <div class="gluten-free-item">
+        <img src="garlic_mashed_potatoes.jpg" alt="Garlic Mashed Potatoes">
+        <h3>Garlic Mashed Potatoes</h3>
+        <p>Made with gluten-free broth.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2403</p>
+        <button class="order-button" onclick="orderItem('Garlic Mashed Potatoes', 2403)">Order</button>
+    </div>
+
+</div>
+
+<!-- Desserts -->
+<div class="category-title" style="margin-top: 20px;">Desserts</div>
+<div class="gluten-free-item-container desserts-container">
+
+    <!-- Dessert 1: Chocolate Flourless Cake -->
+    <div class="gluten-free-item">
+        <img src="chocolate_flourless_cake.jpg" alt="Chocolate Flourless Cake">
+        <h3>Chocolate Flourless Cake</h3>
+        <p>Made without gluten-containing flour.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2403</p>
+        <button class="order-button" onclick="orderItem('Chocolate Flourless Cake', 2403)">Order</button>
+    </div>
+
+    <!-- Dessert 2: Mixed Berry Sorbet -->
+    <div class="gluten-free-item">
+        <img src="mixed_berry_sorbet.jpg" alt="Mixed Berry Sorbet">
+        <h3>Mixed Berry Sorbet</h3>
+        <p>Made from a mix of berries.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2403</p>
+        <button class="order-button" onclick="orderItem('Mixed Berry Sorbet', 2403)">Order</button>
+    </div>
+
+</div>
+
+<!-- Drinks -->
+<div class="category-title" style="margin-top: 20px;">Drinks</div>
+<div class="gluten-free-item-container drinks-container">
+
+    <!-- Drink 1: Sparkling Water with Lemon or Lime -->
+    <div class="gluten-free-item sparkling-water">
+        <img src="sparkling_water_with_lime_or_citrus.jpg" alt="Sparkling Water">
+        <h3>Sparkling Water</h3>
+        <p>Refreshing sugar-free sparkling lemon/lime water.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 680</p>
+        <button class="order-button" onclick="orderItem('Sparkling Water with Lemon or Lime', 680)">Order</button>
+    </div>
+
+    <!-- Drink 2: Iced Herbal Tea -->
+    <div class="gluten-free-item">
+        <img src="iced_herbal_tea.png" alt="Iced Herbal Tea">
+        <h3>Iced Herbal Tea</h3>
+        <p>Unsweetened herbal teas served over ice.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 540</p>
+        <button class="order-button" onclick="orderItem('Iced Herbal Tea', 540)">Order</button>
+    </div>
+
+    <!-- Drink 3: Cucumber Mint Infused Water -->
+    <div class="gluten-free-item cucumber-water">
+        <img src="cucumber_mint_infused_water.jpg" alt="Cucumber Mint Infused Water">
+        <h3>Cucumber Mint Infused Water</h3>
+        <p>Fresh cucumber and mint infused in water.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 650</p>
+        <button class="order-button" onclick="orderItem('Cucumber Mint Infused Water', 650)">Order</button>
+    </div>
+</div>
+</div>
+
+
+
+
+ <!-- Vegan Section -->
+<div id="VeganMenu" class="special-dietary-menu-container">
+   <h2>Vegan Menu</h2>
+
+ <!-- Starters -->
+<div class="category-title" style="margin-top: 20px;">Starters</div>
+<div class="vegan-item-container starters-container">
+    <!-- Vegan Spring Rolls -->
+    <div class="vegan-item">
+        <img src="vegan_spring_rolls.jpg" alt="Vegan Spring Rolls">
+        <h3>Vegan Spring Rolls</h3>
+        <p>Served with peanut dipping sauce.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1576</p>
+        <button class="order-button" onclick="orderItem('Vegan Spring Rolls', 1576)">Order</button>
+    </div>
+
+    <!-- Guacamole with Vegetable Sticks -->
+    <div class="vegan-item">
+        <img src="guacamole_with_vegetable_sticks.jpg" alt="Guacamole with Vegetable Sticks">
+        <h3>Guacamole Vegetable Sticks</h3>
+        <p>Served with carrot and cucumber sticks.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1250</p>
+        <button class="order-button" onclick="orderItem('Guacamole with Vegetable Sticks', 1250)">Order</button>
+    </div>
+</div>
+
+<!-- Main Courses -->
+<div class="category-title" style="margin-top: 20px;">Main Courses</div>
+<div class="vegan-item-container main-course-container">
+    <!-- Chickpea & Vegetable Stir-Fry -->
+    <div class="vegan-item">
+        <img src="chickpea_and vegetabl_stir_fry.jpg" alt="Chickpea & Vegetable Stir-Fry">
+        <h3>Chickpea & Vegetable Stir-Fry</h3>
+        <p>Stir-fried chickpeas with vegetables in a savory sauce.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2500</p>
+        <button class="order-button" onclick="orderItem('Chickpea & Vegetable Stir-Fry', 2500)">Order</button>
+    </div>
+
+    <!-- Vegan Margherita Pizza -->
+    <div class="vegan-item">
+        <img src="vegan_margherita_pizza.jpg" alt="Vegan Margherita Pizza">
+        <h3>Vegan Margherita Pizza</h3>
+        <p>Pizza with vegan toppings, and thin crust.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1250</p>
+        <button class="order-button" onclick="orderItem('Vegan Margherita Pizza', 1250)">Order</button>
+    </div>
+
+    <!-- Quinoa & Black Bean Burrito Bowl -->
+    <div class="vegan-item">
+        <img src="quinoa_and_black_bean_burrito_bowl.jpg" alt="Quinoa & Black Bean Burrito Bowl">
+        <h3>Quinoa & Black Bean Burrito Bowl</h3>
+        <p>Served with avocado, salsa, and lime.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2375</p>
+        <button class="order-button" onclick="orderItem('Quinoa & Black Bean Burrito Bowl', 2375)">Order</button>
+    </div>
+</div>
+
+<!-- Sides -->
+<div class="category-title" style="margin-top: 20px;">Sides</div>
+<div class="vegan-item-container sides-container">
+    <!-- Kale & Quinoa Salad -->
+    <div class="vegan-item">
+        <img src="kale_and_quinoa_salad.jpg" alt="Kale & Quinoa Salad">
+        <h3>Kale & Quinoa Salad</h3>
+        <p>With cherry tomatoes and balsamic vinaigrette.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 870</p>
+        <button class="order-button" onclick="orderItem('Kale & Quinoa Salad', 870)">Order</button>
+    </div>
+
+    <!-- Sweet Potato Fries -->
+    <div class="vegan-item">
+        <img src="sweet_potato_fries.jpg" alt="Sweet Potato Fries">
+        <h3>Sweet Potato Fries</h3>
+        <p>Baked sweet potato fries seasoned with herbs.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1762</p>
+        <button class="order-button" onclick="orderItem('Sweet Potato Fries', 1762)">Order</button>
+    </div>
+</div>
+
+<!-- Desserts -->
+<div class="category-title" style="margin-top: 20px;">Desserts</div>
+<div class="vegan-item-container desserts-container">
+    <!-- Vegan Chocolate Avocado Mousse -->
+    <div class="vegan-item">
+        <img src="vegan_chocolate_avocado_mousse.jpg" alt="Vegan Chocolate Avocado Mousse">
+        <h3>Vegan Chocolate Avocado Mousse</h3>
+        <p>Avocado and sweetened with maple syrup.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 970</p>
+        <button class="order-button" onclick="orderItem('Vegan Chocolate Avocado Mousse', 970)">Order</button>
+    </div>
+
+    <!-- Coconut Bliss Balls -->
+    <div class="vegan-item">
+        <img src="coconut_bliss_balls.jpg" alt="Coconut Bliss Balls">
+        <h3>Coconut Bliss Balls</h3>
+        <p>With shredded coconut, dates, and nuts.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1483</p>
+        <button class="order-button" onclick="orderItem('Coconut Bliss Balls', 1483)">Order</button>
+    </div>
+</div>
+
+<!-- Drinks -->
+<div class="category-title" style="margin-top: 20px;">Drinks</div>
+<div class="vegan-item-container drink-container">
+    <!-- Vegan Berry Smoothie -->
+    <div class="vegan-item">
+        <img src="vegan_berry_smoothie.jpg" alt="Vegan Berry Smoothie">
+        <h3>Vegan Berry Smoothie</h3>
+        <p>Made with plant-based milk and a mix of berries.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 986</p>
+        <button class="order-button" onclick="orderItem('Vegan Berry Smoothie', 986)">Order</button>
+    </div>
+
+    <!-- Iced Herbal Tea -->
+    <div class="vegan-item">
+        <img src="iced_herbal_tea.png" alt="Iced Herbal Tea">
+        <h3>Iced Herbal Tea</h3>
+        <p>Unsweetened herbal teas such as peppermint or chamomile served over ice.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 645</p>
+        <button class="order-button" onclick="orderItem('Iced Herbal Tea', 645)">Order</button>
+    </div>
+
+    <!-- Cucumber Mint Infused Water -->
+    <div class="vegan-item">
+        <img src="cucumber_mint_infused_water.jpg" alt="Cucumber Mint Infused Water">
+        <h3>Cucumber Mint Infused Water</h3>
+        <p>Fresh cucumber and mint infused in water .</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 869</p>
+        <button class="order-button" onclick="orderItem('Cucumber Mint Infused Water', 869)">Order</button>
+    </div>
+</div>
+</div>
+
+ <!-- low carb/keto menu -->
+<div id="LowCarbKetoMenu" class="special-dietary-menu-container ">
+    <h2>Low-Carb/Keto Menu</h2>
+
+    <!-- Starters -->
+<div class="category-title" style="margin-top: 20px;">Starters</div>
+<div class="low-carb-keto-item-container starters-container">
+
+    <!-- Starter 1: Bacon-Wrapped Asparagus Spears -->
+    <div class="low-carb-keto-item">
+        <img src="bacon_wrapped_asparagus_spears.jpg" alt="Bacon-Wrapped Asparagus Spears">
+        <h3>Bacon-Wrapped Asparagus Spears</h3>
+        <p>Baked til crispy.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1441</p>
+        <button class="order-button" onclick="orderItem('Bacon-Wrapped Asparagus Spears', 1441)">Order</button>
+    </div>
+
+    <!-- Starter 2: Caesar Salad with Grilled Chicken -->
+    <div class="low-carb-keto-item">
+        <img src="caesar_salad_with_grilled_chicken.jpg" alt="Caesar Salad with Grilled Chicken">
+        <h3>Grilled Chicken Caesar Salad</h3>
+        <p>Romaine lettuce with keto Caesar dressing.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2465</p>
+        <button class="order-button" onclick="orderItem('Caesar Salad with Grilled Chicken', 2465)">Order</button>
+    </div>
+</div>
+
+<!-- Main Courses -->
+<div class="category-title" style="margin-top: 20px;">Main Courses</div>
+<div class="low-carb-keto-item-container main-course-container">
+
+    <!-- Main Course 1: Salmon with Lemon Dill Butter -->
+    <div class="low-carb-keto-item">
+        <img src="salmon_with_lemon_dill_butter.jpg" alt="Salmon with Lemon Dill Butter">
+        <h3>Salmon with Lemon Dill Butter</h3>
+        <p>Baked/grilled keto-friendly lemon dill butter.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 3214</p>
+        <button class="order-button" onclick="orderItem('Salmon with Lemon Dill Butter', 3214)">Order</button>
+    </div>
+
+    <!-- Main Course 2: Zucchini Noodles with Pesto and Cherry Tomatoes -->
+    <div class="low-carb-keto-item">
+        <img src="zucchini_noodles_with_pesto_and_cherry_tomatoes.jpg" alt="Zucchini Noodles with Pesto and Cherry Tomatoes">
+        <h3>Zucchini Noodles $ Cherry Tomatoes</h3>
+        <p>Tossed in a keto-friendly basil pesto.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2312</p>
+        <button class="order-button" onclick="orderItem('Zucchini Noodles with Pesto', 2312)">Order</button>
+    </div>
+
+    <!-- Main Course 3: Bunless Turkey Burger Lettuce Wraps -->
+    <div class="low-carb-keto-item">
+        <img src="bunless_turkey_burger_lettuce_wraps.jpg" alt="Bunless Turkey Burger Lettuce Wraps">
+        <h3>Turkey Burger in Lettuce Wraps</h3>
+        <p>With keto-friendly toppings.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1345</p>
+        <button class="order-button" onclick="orderItem('Bunless Turkey Burger', 1345)">Order</button>
+    </div>
+</div>
+
+<!-- Sides -->
+<div class="category-title" style="margin-top: 20px;">Sides</div>
+<div class="low-carb-keto-item-container sides-container">
+
+    <!-- Side 1: Garlic Butter Green Beans -->
+    <div class="low-carb-keto-item">
+        <img src="garlic_butter_green_beans.jpg" alt="Garlic Butter Green Beans">
+        <h3>Garlic Butter Green Beans</h3>
+        <p>Sautéed in garlic butter.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 2435</p>
+        <button class="order-button" onclick="orderItem('Garlic Butter Green Beans', 2435)">Order</button>
+    </div>
+
+    <!-- Side 2: Cauliflower Mash with Chives -->
+    <div class="low-carb-keto-item">
+        <img src="cauliflower_mash_with_chives.jpg" alt="Cauliflower Mash with Chives">
+        <h3>Cauliflower Chives Mash </h3>
+        <p>Blended with chives and cream.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1280</p>
+        <button class="order-button" onclick="orderItem('Cauliflower Mash with Chives', 1280)">Order</button>
+    </div>
+</div>
+
+<!-- Desserts -->
+<div class="category-title" style="margin-top: 20px;">Desserts</div>
+<div class="low-carb-keto-item-container desserts-container">
+
+    <!-- Dessert 1: Keto Chocolate Avocado Mousse -->
+    <div class="low-carb-keto-item">
+        <img src="keto_chocolate_avocado_mousse.jpg" alt="Keto Chocolate Avocado Mousse">
+        <h3>Keto Chocolate Avocado Mousse</h3>
+        <p>With keto sweeteners.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1300</p>
+        <button class="order-button" onclick="orderItem('Keto Chocolate Avocado Mousse', 1300)">Order</button>
+    </div>
+
+    <!-- Dessert 2: Berries & Whipped Cream -->
+    <div class="low-carb-keto-item">
+        <img src="berries_and_whiped_cream.jpg" alt="Berries & Whipped Cream">
+        <h3>Berries & Whipped Cream</h3>
+        <p>Topped with keto whipped cream.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1200</p>
+        <button class="order-button" onclick="orderItem('Berries & Whipped Cream', 1200)">Order</button>
+    </div>
+</div>
+
+<!-- Drinks -->
+<div class="category-title" style="margin-top: 20px;">Drinks</div>
+<div class="low-carb-keto-item-container drinks-container">
+
+    <!-- Drink 1: Iced Coffee with Heavy Cream -->
+    <div class="low-carb-keto-item">
+        <img src="iced_coffee_with_heavy_cream.jpg" alt="Iced Coffee with Heavy Cream">
+        <h3>Iced Coffee </h3>
+        <p>With keto heavy cream.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 1190</p>
+        <button class="order-button" onclick="orderItem('Iced Coffee with Heavy Cream', 1190)">Order</button>
+    </div>
+
+    <!-- Drink 2: Sparkling Water with Lemon or Lime -->
+    <div class="low-carb-keto-item">
+        <img src="sparkling_water_with_lime_or_citrus.jpg" alt="Sparkling Water with Lemon or Lime">
+        <h3>Sparkling Lemon/Lime Water</h3>
+        <p>Sugar-free sparkling water with citrus.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 890</p>
+        <button class="order-button" onclick="orderItem('Sparkling Water with Lemon or Lime', 890)">Order</button>
+    </div>
+
+    <!-- Drink 3: Keto-Friendly Berry Smoothie -->
+    <div class="low-carb-keto-item">
+        <img src="ketofriendly_berry_smoothie.png" alt="Keto-Friendly Berry Smoothie">
+        <h3>Keto-Friendly Berry Smoothie</h3>
+        <p>A smoothie made with low-carb berries and almond milk.</p>
+        <p>🕒 20 mins prep time</p>
+        <p>Price: Ksh 780</p>
+        <button class="order-button" onclick="orderItem('Keto-Friendly Berry Smoothie', 780)">Order</button>
+    </div>
+</div>
+</div>
+
+
+
+
+
+<!-- jss -->
+<script>
+    function openTab(tabName) {
+      //hide all menu containers
+       var menuContainers = document.getElementsByClassName('special-dietary-menu-container');
+       for(var i = 0; i< menuContainers.length; i++){
+         menuContainers[i].style.display = 'none';
+       }
+
+       //show the selected menu container
+      var selectedTab = document.getElementById(tabName + 'Menu');
+       if (selectedTab) {
+         selectedTab.style.display = 'block';
+       }
+          }
+
+
+
+          function toggleDropdown() {
+        const dropdownMenu = document.getElementById('myDropdown');
+        dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-toggle')) {
+            const dropdowns = document.getElementsByClassName('dropdown-menu');
+            for (let i = 0; i < dropdowns.length; i++) {
+                const openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
+                }
+            }
+        }
+    };
+
+
+
+
+
+
+
+
+    // Call the openTab function to show a default tab when the page loads
+    window.onload = function() {
+        openTab('GlutenFree');
+    };
+
+
+    function viewMyOrders() {
+        // Implement logic to navigate to the "View My Orders" page
+        window.location.href = 'view-my-orders.html';
+    }
+
+    function navigateToMenu() {
+        // Get the selected option value
+        var selectedMenu = document.getElementById("menuDropdown").value;
+
+        // Redirect to the selected menu
+        if (selectedMenu) {
+            window.location.href = selectedMenu;
+        }
+    }
+
+    // Add an event listener for the dropdown menu change
+    document.getElementById("menuDropdown").addEventListener("change", navigateToMenu);
+
+
+ function orderItem(name, price) {
+  // Create an object representing the ordered item
+  const orderedItem = {
+    name: name,
+    price: price,
+  };
+
+  // Add the ordered item to the local storage
+  let orders = JSON.parse(localStorage.getItem('orders')) || [];
+  orders.push(orderedItem);
+  localStorage.setItem('orders', JSON.stringify(orders));
+
+    // Show a pop-up notification
+    alert(`${name} has been added to the tray!`);
+
+  }
+
+
+     function toggleFlexbox() {
+            var flexContainer = document.getElementById("flexContainer");
+            flexContainer.style.display = (flexContainer.style.display === "flex") ? "none" : "flex";
+        }
+
+        function hideTextBox() {
+            var textBoxContainer = document.getElementById("textBoxContainer");
+            textBoxContainer.style.display = "none";
+        }
+
+        function askForAssistance() {
+            alert("Asking for assistance. Please wait.");
+        }
+
+        function clearTable() {
+            alert("Request to clear the table submitted.");
+        }
+
+        function billMe() {
+            alert("Requesting the bill. Thank you for dining with us!");
+        }
+
+        function showTextBox(feedbackType) {
+            var textBoxContainer = document.getElementById("textBoxContainer");
+            textBoxContainer.style.display = "flex";
+            document.getElementById("textBox").focus();
+            document.getElementById("textBox").setAttribute("data-feedback-type", feedbackType);
+        }
+
+        function submitFeedback() {
+            var textBoxContainer = document.getElementById("textBoxContainer");
+            textBoxContainer.style.display = "none";
+            var feedbackType = document.getElementById("textBox").getAttribute("data-feedback-type");
+            var feedbackText = document.getElementById("textBox").value;
+
+            // Send feedback to email
+            var emailSubject = "Feedback - " + feedbackType;
+            var emailBody = "Feedback Type: " + feedbackType + "\n\n" + "Feedback Text: " + feedbackText;
+            window.location.href = "mailto:karemathenge8@gmail.com?subject=" + encodeURIComponent(emailSubject) + "&body=" + encodeURIComponent(emailBody);
+
+            // Reflect on admin panel (You may need a server-side implementation for this)
+            saveToAdminPanel(feedbackType, feedbackText);
+        }
+
+        function saveToAdminPanel(feedbackType, feedbackText) {
+            // Simulate server-side logic by showing an alert
+            alert("Feedback Type: " + feedbackType + "\n\n" + "Feedback Text: " + feedbackText + "\n\nSaved to admin panel.");
+        }
+</script>
+
+</body>
+</html>
+
